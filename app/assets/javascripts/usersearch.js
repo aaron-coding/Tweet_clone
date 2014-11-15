@@ -38,23 +38,23 @@ $.UsersSearch.prototype.renderResults = function(users){
   for (var i = 0; i < users.length; i++) {
     
     if(users[i].followed){
-      var followState = true;
+      var followState = 'followed';
     } else {
-      var followState = false;
+      var followState = 'unfollowed';
     }
    
     var options = {
-    // 'userId':  ,
-    'followeeId': users[i].id,
-    'followState': followState,
-    
-   }
-    var followee = users[i].id;
-    
-    var button = $("<button></button>");
+      'followeeId': users[i].id,
+      'followState': followState,
+    }
+
+    var button = "<button class='follow-toggle'></button>"
+  
     var userUrl = "/users/" + users[i].id;
-    var liString = "<li><a href="+ userUrl +">" + users[i].username + "</a></li>";
-    this.$ul.append(liString);
+    var $liString =$("<li><a href="+ userUrl +">" + users[i].username + button + "</a></li>");
+    this.$ul.append($liString);
+    new $.FollowToggle($liString.find('button'), options);
+
   }
 };
 

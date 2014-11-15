@@ -7,6 +7,7 @@ $.FollowToggle = function (el, options) {
 };
 
 $.FollowToggle.prototype.render = function () {
+  
   if (this.followState === "following" || this.followState === "unfollowing") {
     this.$el.prop("disabled", true);
   } else {
